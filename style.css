@@ -12,11 +12,11 @@ body,html {
 }
 
 q {
- /* font-family: "Times New Roman", Times, serif;*/
+  font-family: "Times New Roman", Times, serif;
   font-style: italic;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: white;
-  background-color: rgba(255,8,0,.3);
+  background-color: rgba(255,8,0,.8);
   position: absolute;
   width: 100%;
   text-align: center; 
@@ -31,7 +31,7 @@ q {
 }
 
 .key {
-  border: .4rem solid black;
+  border: .4rem solid dodgerblue;
   border-radius: .5rem;
   margin: 1rem;
   font-size: 1.5rem;
