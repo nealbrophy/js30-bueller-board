@@ -77,8 +77,17 @@
 		if(e.propertyName !== 'transform') return; // skip if transition is NOT transform (the longest transition)
 		this.classList.remove('playing');
 		}
+	function playSoundTap(e) {
+		const audio = document.querySelector(`audio[data-key="${e.path[1].attributes['data-key'].nodeValue}"`);
+		const key = document.querySelector(`.key[data-key="${e.path[1].attributes['data-key'].nodeValue}"]`);
+		if(!audio) return;
+		audio.currentTime = 0;
+		audio.play();
+		key.classList.add('playing');
+		}
 	const keys = document.querySelectorAll('.key');
 	keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+	keys.forEach(key => key.addEventListener('click', playSoundTap));
 	window.addEventListener('keydown', playSound);
 </script>
 
