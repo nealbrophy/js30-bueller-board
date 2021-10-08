@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Bueller Board</title>
@@ -8,46 +9,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <aside>
-	<q>The sportos, the motorheads, geeks, sluts, bloods, wastoids, dweebies, d*ckheads - they all adore him. They think he's a righteous dude.</q>
+    <q>The sportos, the motorheads, geeks, sluts, bloods, wastoids, dweebies, d*ckheads - they all adore him. They think
+      he's a righteous dude.</q>
   </aside>
 
   <div class="keys">
-    <div data-key="65" class="key">
+    <div data-key="65" class="key" onclick="tapClick(65)">
       <kbd>A</kbd>
       <span class="sound">cough 01</span>
     </div>
-    <div data-key="83" class="key">
+    <div data-key="83" class="key" onclick="tapClick(83)">
       <kbd>S</kbd>
       <span class="sound">cough 02</span>
     </div>
-    <div data-key="68" class="key">
+    <div data-key="68" class="key" onclick="tapClick(68)">
       <kbd>D</kbd>
       <span class="sound">cough 03</span>
     </div>
-    <div data-key="70" class="key">
+    <div data-key="70" class="key" onclick="tapClick(70)">
       <kbd>F</kbd>
       <span class="sound">cough 04</span>
     </div>
-    <div data-key="71" class="key">
+    <div data-key="71" class="key" onclick="tapClick(71)">
       <kbd>G</kbd>
       <span class="sound">heave 01</span>
     </div>
-    <div data-key="72" class="key">
+    <div data-key="72" class="key" onclick="tapClick(72)">
       <kbd>H</kbd>
       <span class="sound">heave 02</span>
     </div>
-    <div data-key="74" class="key">
+    <div data-key="74" class="key" onclick="tapClick(74)">
       <kbd>J</kbd>
       <span class="sound">heave 03</span>
     </div>
-    <div data-key="75" class="key">
+    <div data-key="75" class="key" onclick="tapClick(75)">
       <kbd>K</kbd>
       <span class="sound">sneeze</span>
     </div>
-    <div data-key="76" class="key">
+    <div data-key="76" class="key" onclick="tapClick(76)">
       <kbd>L</kbd>
       <span class="sound">oh lawd</span>
     </div>
@@ -62,35 +65,31 @@
   <audio data-key="74" src="sounds/heave03.wav"></audio>
   <audio data-key="75" src="sounds/sneeze.wav"></audio>
   <audio data-key="76" src="sounds/ohlawd.wav"></audio>
-  
+
 
   <script>
-	function playSound(e) {
-		const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // get audio for pressed key
-		const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // get keycode for pressed key
-		if(!audio) return; // stop function if no audio for pressed key
-		audio.currentTime = 0; // restart audio file
-		audio.play();
-		key.classList.add('playing');
-		}
-	function removeTransition(e) {
-		if(e.propertyName !== 'transform') return; // skip if transition is NOT transform (the longest transition)
-		this.classList.remove('playing');
-		}
-	function playSoundTap(e) {
-		const audio = document.querySelector(`audio[data-key="${e.path[1].attributes['data-key'].nodeValue}"`);
-		const key = document.querySelector(`.key[data-key="${e.path[1].attributes['data-key'].nodeValue}"]`);
-		if(!audio) return;
-		audio.currentTime = 0;
-		audio.play();
-		key.classList.add('playing');
-		}
-	const keys = document.querySelectorAll('.key');
-	keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-	keys.forEach(key => key.addEventListener('click', playSoundTap));
-	window.addEventListener('keydown', playSound);
-</script>
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // get audio for pressed key
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // get keycode for pressed key
+      if (!audio) return; // stop function if no audio for pressed key
+      audio.currentTime = 0; // restart audio file
+      audio.play();
+      key.classList.add('playing');
+    }
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return; // skip if transition is NOT transform (the longest transition)
+      this.classList.remove('playing');
+    }
+    function tapClick(key) {
+      const e = { keyCode: key} // create object with keyCode prop to pass to func
+      playSound(e); // call playSound func passing obj with keyCode
+    }
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
+  </script>
 
 
 </body>
+
 </html>
