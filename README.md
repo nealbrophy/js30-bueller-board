@@ -4,7 +4,7 @@
 This is a slightly customized version of the first excercise from [Wes Bos's JavaScript30](https://javascript30.com/).
 
 The site can be viewed on GithubPages [here](https://nealbrophy.github.io/js30-bueller-board/index.html) though the keypresses register a little slow at times. For better performance clone the repo and run it locally.
-<img src="bueller-board-screencap.png">
+<img src="images/bueller-board-screencap.png">
 ### How to run locally
 1. Clone or download this repo
 	- `git clone https://github.com/nealbrophy/js30-bueller-board` in terminal
